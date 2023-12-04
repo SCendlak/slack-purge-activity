@@ -31,13 +31,3 @@ To run Slack Message Cleaner, follow these steps:
 
 1. Open your terminal
 2. Run the following command: `python main.py`
-
-What you will need:
-1. [slack-cli](https://api.slack.com/automation/quickstart)
-2. Your worspace configured with slack api
-3. Create new [slack app](https://api.slack.com/apps)
-4. Go to https://api.slack.com/apps/YOUR-APP-ID-HERE/oauth? to copy user OauthToken and set user token scopes to include :
-    channels:history, channels:read, channels:write, chat:write, groups:history, groups:read, im:history, im:read, mpim:history, mpim:read
-5. Go to your slack profile and copy user id
-6. run `python main.py` in your commmand prompt
-
