@@ -1,15 +1,12 @@
 import json
 import os
 from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 from list_channels import get_channels_with_my_messages, list_dm_conversations
 from delete_messages import delete_my_messages
-# Initialize a Web client with your Slack token
+
 with open('creds.json', 'r') as file:
     creds = json.load(file)
     user_id=creds['user_id']
-    api_token = creds['token']
-client = WebClient(token=api_token)
 
 def main():
         channels_ids = get_channels_with_my_messages(user_id)
