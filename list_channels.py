@@ -28,9 +28,17 @@ def get_channels_with_my_messages(user_id):
 
 def list_dm_conversations():
     try:
-        response = client.users_conversations(types='im')
-        dm_ids = [conversation['id'] for conversation in response['channels']]
-        return dm_ids
+        im_channels = client.users_conversations(types=['im'])
+        mpim_channels  = client.users_conversations(types=['mpim'])
+        dm_ids = [conversation['id'] for conversation in im_channels['channels']]
+        dm_users = [conversation['user'] for conversation in im_channels['channels']]
+        mpim_ids = [conversation['id'] for conversation in mpim_channels['channels']]
+        mpim_users = [conversation['name'] for conversation in mpim_channels['channels']]
+        dm_names = []
+        for user in dm_users:
+            reference = client.users_info(user=user)
+            dm_names.append(reference['user']["profile"]["real_name"])
+        return dm_ids.append(mpim_ids)
 
     except SlackApiError as e:
         print(f"Error: {e}")

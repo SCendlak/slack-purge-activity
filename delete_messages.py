@@ -22,7 +22,7 @@ def delete_my_messages(channel_id):
                 delete_count += 1
 
                 # Rate limit control (tweak for your needs)
-                rate_limit = 22
+                rate_limit = 50
                 if delete_count % rate_limit == 0:
                     elapsed_time = time.time() - start_time
                     if elapsed_time < 60:
@@ -39,3 +39,6 @@ def delete_my_messages(channel_id):
 
     except SlackApiError as e:
         print(f"Error: {e}")
+        print('waiting for 60 seconds and retrying...')
+        time.sleep(60)
+        delete_my_messages(channel_id)
